@@ -8,10 +8,13 @@ export function LineOrchestrator({ dotsCoords }) {
 
   useInterval(
     () => {
-      setLines([...lines, Math.random() * 360]);
+      const line = { rotation: Math.random() * 360, red: Math.random() > 0.5 };
+      setLines([...lines, line]);
     },
     lines.length > 10 ? null : 500
   );
 
-  return lines.map((lineRotation, i) => <Line key={i} rotation={lineRotation} />);
+  return lines.map((line, i) => (
+    <Line key={i} rotation={line.rotation} red={line.red} dotsCoords={dotsCoords} />
+  ));
 }
