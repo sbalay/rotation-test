@@ -4,29 +4,33 @@ import { Dot } from "../Dot";
 
 import styles from "./styles.module.scss";
 
+function calculateRotationAngle(element, { clientX, clientY }) {
+  const centerY = element.offsetTop + element.offsetHeight / 2;
+  const centerX = element.offsetLeft + element.offsetLeft / 2;
+  const angle = 57.296 * Math.atan((centerY - clientY) / (centerX - clientX));
+  const chain = clientX - centerX <= 0 ? -180 : 0;
+  return chain + angle;
+}
+
 export function DotsContainer() {
   const [rotationDegress, setRotationDegress] = useState(0);
   const containerEl = useRef(null);
   const moveHandlerRef = useRef(null);
-  const lastLocationRef = useRef(null);
 
   function handleMove({ changedTouches, x, y }) {
     const { clientX, clientY } = changedTouches ? changedTouches[0] : { clientX: x, clientY: y };
-    lastLocationRef.current = [clientX, clientY];
-    setRotationDegress(lastValue => lastValue + 1);
+    setRotationDegress(calculateRotationAngle(containerEl.current, { clientX, clientY }));
   }
   moveHandlerRef.current = moveHandlerRef.current || handleMove;
 
   function stopRecording() {
     containerEl.current.removeEventListener("touchmove", moveHandlerRef.current);
     containerEl.current.removeEventListener("mousemove", moveHandlerRef.current);
-    lastLocationRef.current = null;
   }
 
   function startRecording({ clientX, clientY }) {
     containerEl.current.addEventListener("touchmove", moveHandlerRef.current);
     containerEl.current.addEventListener("mousemove", moveHandlerRef.current);
-    lastLocationRef.current = [clientX, clientY];
   }
 
   return (
