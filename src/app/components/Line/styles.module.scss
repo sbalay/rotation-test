@@ -1,0 +1,17 @@
+.line {
+  position: fixed;
+  top: 0;
+  width: 3px;
+  height: calc(100vh + 100vw);
+  left: 50%;
+  top: calc((-100vh - 100vw) / 2 + 50vh);
+  z-index: 2;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}

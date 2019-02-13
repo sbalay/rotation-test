@@ -1,7 +1,13 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import { DotsContainer } from "./components/DotsContainer";
+import { LineOrchestrator } from "./components/LineOrchestrator";
 
 export function App() {
-  return <DotsContainer />;
+  return (
+    <Fragment>
+      <LineOrchestrator />
+      <DotsContainer />
+    </Fragment>
+  );
 }
