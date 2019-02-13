@@ -16,10 +16,17 @@ export function DotsContainer() {
   const [rotationDegress, setRotationDegress] = useState(0);
   const containerEl = useRef(null);
   const moveHandlerRef = useRef(null);
+  const lastAngleRef = useRef(null);
 
   function handleMove({ changedTouches, x, y }) {
     const { clientX, clientY } = changedTouches ? changedTouches[0] : { clientX: x, clientY: y };
-    setRotationDegress(calculateRotationAngle(containerEl.current, { clientX, clientY }));
+    const rotationAngle = calculateRotationAngle(containerEl.current, { clientX, clientY });
+    const lastAngle = lastAngleRef.current;
+    lastAngleRef.current = rotationAngle;
+    if (!lastAngle) {
+      return;
+    }
+    setRotationDegress(before => before - lastAngle + rotationAngle);
   }
   moveHandlerRef.current = moveHandlerRef.current || handleMove;
 
@@ -29,6 +36,7 @@ export function DotsContainer() {
   }
 
   function startRecording({ clientX, clientY }) {
+    lastAngleRef.current = null;
     containerEl.current.addEventListener("touchmove", moveHandlerRef.current);
     containerEl.current.addEventListener("mousemove", moveHandlerRef.current);
   }
