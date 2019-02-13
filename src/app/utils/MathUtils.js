@@ -1,8 +1,6 @@
-function getElementCenter(element) {
-  return [
-    element.offsetLeft + element.offsetLeft / 2,
-    element.offsetTop + element.offsetHeight / 2
-  ];
+export function getElementCenter(element) {
+  const rect = element.getBoundingClientRect();
+  return [rect.left + rect.width / 2, rect.top + rect.height / 2];
 }
 
 function covertRadiansToDegress(radians) {
