@@ -1,8 +1,10 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 import styles from "./styles.module.scss";
 
 // Dots' color could be one of red or blue
-export function Dot({ red = false }) {
-  return <div className={`${styles.dot} ${red ? styles.red : styles.blue}`} />;
+function DotComponent({ red = false }, ref) {
+  return <div ref={ref} className={`${styles.dot} ${red ? styles.red : styles.blue}`} />;
 }
+
+export const Dot = forwardRef(DotComponent);

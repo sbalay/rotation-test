@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 
 import { calculateRotationAngle } from "../utils/MathUtils";
 
-export function useRotationDragHandler() {
+export function useRotationDragHandler(dragCallback) {
   const containerEl = useRef(null);
   const lastAngleRef = useRef(null);
   const [dragging, setDragging] = useState(false);
@@ -17,6 +17,7 @@ export function useRotationDragHandler() {
       return;
     }
     setRotationDegress(before => before - lastAngle + rotationAngle);
+    dragCallback();
   }
 
   function stopRecording() {

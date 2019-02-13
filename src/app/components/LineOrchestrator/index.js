@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Line } from "../Line";
 import { useInterval } from "../../hooks/useInterval";
 
-export function LineOrchestrator() {
+export function LineOrchestrator({ dotsCoords }) {
   const [lines, setLines] = useState([]);
 
   useInterval(
@@ -13,5 +13,5 @@ export function LineOrchestrator() {
     lines.length > 10 ? null : 500
   );
 
-  return lines.map(lineRotation => <Line rotation={lineRotation} />);
+  return lines.map((lineRotation, i) => <Line key={i} rotation={lineRotation} />);
 }

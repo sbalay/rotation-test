@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import styles from "./styles.module.scss";
 
-export function Line({ red = false, rotation = 0, right = false }) {
+export function Line({ red = false, rotation = 0, right = false, blueDotRef, redDotRef }) {
   const [moving, setMoving] = useState(false);
 
   useEffect(() => {
