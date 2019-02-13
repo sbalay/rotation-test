@@ -6,6 +6,7 @@
   left: 50%;
   top: calc((-100vh - 100vw) / 2 + 50vh);
   z-index: 2;
+  transition: 5s left linear;
 }
 
 .red {
