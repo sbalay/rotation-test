@@ -7,4 +7,9 @@
   justify-content: space-between;
   padding: 50px;
   border-radius: 380px;
+  cursor: grab;
+}
+
+.dragging {
+  cursor: grabbing;
 }
