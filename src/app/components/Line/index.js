@@ -49,11 +49,11 @@ export function Line({ red = false, rotation = 0, right = false, dotsCoords }) {
     const B = -1 / (p1.y - p0.y);
     const C = -p0.x / (p1.x - p0.x) + p0.y / (p1.y - p0.y);
 
-    const distance =
-      Math.abs(A * dotsCoords.red.x + B * dotsCoords.red.y + C) / Math.sqrt(A * A + B * B);
+    const dotCoords = red ? dotsCoords.red : dotsCoords.blue;
+    const distance = Math.abs(A * dotCoords.x + B * dotCoords.y + C) / Math.sqrt(A * A + B * B);
 
     if (distance < 25) {
-      console.log("colission with red dot");
+      setMounted(false);
     }
   }, 16);
 
