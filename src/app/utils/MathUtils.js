@@ -3,6 +3,11 @@ export function getElementCenter(element) {
   return [rect.left + rect.width / 2, rect.top + rect.height / 2];
 }
 
+export function getElementCenter2(element) {
+  const rect = element.getBoundingClientRect();
+  return [rect.left + rect.width / 2, window.innerHeight - rect.bottom + rect.height / 2];
+}
+
 function covertRadiansToDegress(radians) {
   return 57.296 * radians;
 }

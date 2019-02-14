@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 
 import { useRotationDragHandler } from "../../hooks/useRotationDragHandler";
-import { getElementCenter } from "../../utils/MathUtils";
+import { getElementCenter2 } from "../../utils/MathUtils";
 import { Dot } from "../Dot";
 
 import styles from "./styles.module.scss";
@@ -14,8 +14,8 @@ export function DotsContainer({ onDotsPositionChanged }) {
       return;
     }
 
-    const [redDotX, redDotY] = getElementCenter(redDotRef.current);
-    const [blueDotX, blueDotY] = getElementCenter(blueDotRef.current);
+    const [redDotX, redDotY] = getElementCenter2(redDotRef.current);
+    const [blueDotX, blueDotY] = getElementCenter2(blueDotRef.current);
     onDotsPositionChanged({
       red: { x: redDotX, y: redDotY },
       blue: { x: blueDotX, y: blueDotY }
